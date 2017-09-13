@@ -1,6 +1,12 @@
 //Hardware Modeling using Verilog
 //Week4: Lecture 16: Blocking and Non-Blocking Assignments
 
+Concepts Covered:
+•	Distinguishes between the procedural assignment statements, blocking and non-blocking. 
+•	Explains the general syntax of the blocking assignment statement, with illustrative examples. 
+•	Explains the general syntax of the non-blocking assignment statement, with illustrative examples. 
+•	Illustrates the difference in semantics through simple examples. 
+
 //Example 1
 module blocking_example;
     reg X, Y, Z;

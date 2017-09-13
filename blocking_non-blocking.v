@@ -62,3 +62,34 @@ endmodule
                   75a= 107, b= 114, c=  18, d= 104
                   80a= 107, b= 114, c=  19, d= 104
                   */
+
+//Example 3
+module non_blocking_example;
+    integer a, b, c;
+    
+    initial 
+      begin
+        a = 10;
+        b = 20;
+        c = 15;
+      end
+      
+    initial
+      begin
+        a <= #5 b+c;     //a is assigned 35 at t= 5
+        b <= #5 a+5;     //b is assigned 15 at t= 5
+        c <= #5 a-b;     //c is assigned -5 at t= 5
+      end
+      
+    initial
+      begin
+        $monitor($time, " a=%4d, b=%4d, c=%4d ", a, b, c);
+        #100 $finish;
+      end
+      
+endmodule
+
+/*                 0 a=  10, b=  20, c=  15 
+                   5 a=  35, b=  15, c= -10 
+*/
+    

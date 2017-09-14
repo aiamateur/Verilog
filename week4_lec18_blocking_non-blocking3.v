@@ -1,3 +1,7 @@
+Concepts Covered:
+•	Explain with illustrative examples how the use of blocking or non-blocking assignment statements can influence the synthesis tool. 
+•	Illustrates what are the proper ways to model a shift register using both blocking and non-blocking assignments. 
+
 //Example 6: 4 bit Shift register. Assignment using blocking statements in the correct order resulting in intended behaviour
 //Hence a 4 bit shift register is generated
 module shiftreg_4bit(clock, clear, A, E);

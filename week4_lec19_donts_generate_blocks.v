@@ -73,7 +73,7 @@ module RCA(carry_out, sum, a, b, carry_in);
        genvar i;
        
        generate
-         for (i = 0; i < N; i++)
+         for (i = 0; i < N; i=i+1)
            begin: fa_loop
              wire t1, t2, t3;
              xor G1 (t1, a[i], b[i]);
@@ -81,9 +81,11 @@ module RCA(carry_out, sum, a, b, carry_in);
              and G3 (t2, a[i], b[i]);
              and G4 (t3, t1, carry[i]);
              or  G5 (carry[i+1], t2, t3);
+             //full_adder FA (a[i], b[i], carry[i], sum[i], carry[i+1]);
            end
        endgenerate
-endmodule      
+endmodule
+                
        
        
 //My version of N-bit adder       

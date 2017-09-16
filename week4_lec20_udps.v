@@ -149,7 +149,7 @@ primitive TFF (q, clk, clr);
           endtable
 endprimitive
 
-//CExample 10: onstructing a 6-bit ripple counter using T Flip-Flops
+//Example 10: onstructing a 6-bit ripple counter using T Flip-Flops
 
 module ripple_counter (count, clk, clr):
        input clk, clr;
@@ -164,4 +164,46 @@ module ripple_counter (count, clk, clr):
 endmodule
 
              
+// Example 11: A negative edge sensitive of a JK Flip-Flop
+primitive JKFF (q, j, k, clk, clr);
+          input j, k, clk, clr;
+          output reg q;
+          
+          initial
+            q = 0;   //This is optional
+            
+          table
+          // j  k  clk   clr  : q : q_new
+             ?  ?  ?     1    : ? : 0;        //clear
+             ?  ?  ?     (10) : ? : -;        //ignore .. no change             
+             0  0  (10)  0    : ? : -;        //no change                
+             0  1  (10)  0    : ? : 0;        //reset condition               
+             1  0  (10)  0    : ? : 1;        //set condition             
+             1  1  (10)  0    : 0 : 1;        //toggle condition                  
+             1  1  (10)  0    : 1 : 0;        //toggle condition 
+             ?  ?  (01)  0    : ? : -;        //no change
+          endtable
+endprimitive
+
+// Example 12: A positive edge sensitive of a SR Flip-Flop
+primitive SRFF (q, s, r, clk, clr);
+          input s, r, clk, clr;
+          output reg q;
+          
+          initial
+            q = 0;   //This is optional
+            
+          table
+          // s  r  clk   clr  : q : q_new
+             ?  ?  ?     1    : ? : 0;        //clear
+             ?  ?  ?     (10) : ? : -;        //ignore .. no change             
+             0  0  (01)  0    : ? : -;        //no change                
+             0  1  (01)  0    : ? : 0;        //reset condition               
+             1  0  (01)  0    : ? : 1;        //set condition             
+             1  1  (01)  0    : ? : x;        //invalid condition                  
+             ?  ?  (10)  0    : ? : -;        //ignore .. no change 
+          endtable
+endprimitive
+
+
              

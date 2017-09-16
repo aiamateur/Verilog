@@ -112,5 +112,56 @@ primitive udp_mux41 (f, s0, s1, i0, i1, i2, i3);
           endtable
 endprimitive
 
+// Example 8: A level-sensitive D-type latch
+primitive Dlatch (q, d, clk, clr);
+          input d, clk, clr;
+          output reg q;
+          
+          initial
+            begin
+              q = 0;   //This is optional
+            end
+            
+          table
+          // d clk clr : q : q_new
+             ? ?   1   : ? : 0;        //latch is cleared
+             0 1   0   : ? : 0;        //latch is reset
+             1 1   1   : ? : 1;        //latch is set
+             ? 0   0   : ? : -;        //retains previous state
+          endtable
+endprimitive
+
+// Example 9; A T flip-flop
+primitive TFF (q, clk, clr);
+          input clk, clr;
+          output reg q;
+          
+          initial
+            q = 0;   //This is optional
+            
+          table
+          // clk   clr  : q : q_new
+             ?     1    : ? : 0;        //FF is cleared
+             ?     (10) : ? : -;        //ignore negative edge of "clr"
+             (10)  0    : 1 : 0;        //FF toggles at negative edge of "clk"
+             (10)  0    : 0 : 1;        //-do-
+             (0?)  0    : ? : -;        //ignore positive edge of "clk"
+          endtable
+endprimitive
+
+//CExample 10: onstructing a 6-bit ripple counter using T Flip-Flops
+
+module ripple_counter (count, clk, clr):
+       input clk, clr;
+       output [5:0] count;
+       
+       TFF F0 (count[0], clk, clr);
+       TFF F1 (count[1], count[0], clr);
+       TFF F2 (count[2], count[1], clr);
+       TFF F3 (count[3], count[2], clr);
+       TFF F4 (count[4], count[3], clr);  
+       TFF F5 (count[5], count[4], clr);
+endmodule
+
              
              

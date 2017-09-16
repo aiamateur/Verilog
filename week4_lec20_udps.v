@@ -61,5 +61,38 @@ module full_Adder (sum, cout, a, b, c);
        udp_cy  CARRY (cout, a, b, c);
 endmodule
 
+// Example 5: A 4-input AND function
+// using dont care ("?")
+primitive udp_and4 (f, a, b, c, d);
+          input a, b, c, d;
+          output f;
+          
+          table
+          // a b c d : f
+             0 ? ? ? : 0;
+             ? 0 ? ? : 0;
+             ? ? 0 ? : 0;
+             ? ? ? 0 : 0;
+             1 1 1 1 : 1;
+          endtable
+endprimitive
+
+// Example 6: A 4-input OR function
+// using dont care ("?")
+primitive udp_or4 (f, a, b, c, d);
+          input a, b, c, d;
+          output f;
+          
+          table
+          // a b c d : f
+             1 ? ? ? : 1;
+             ? 1 ? ? : 1;
+             ? ? 1 ? : 1;
+             ? ? ? 1 : 1;
+             0 0 0 0 : 0;
+          endtable
+endprimitive
+
+
              
              

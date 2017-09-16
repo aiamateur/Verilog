@@ -121,12 +121,11 @@ endprimitive
 // Example 8: A level-sensitive D-type latch
 primitive Dlatch (q, d, clk, clr);
           input d, clk, clr;
-          output reg q;
+          output q;
+          reg q;
           
           initial
-            begin
               q = 0;   //This is optional
-            end
             
           table
           // d clk clr : q : q_new
@@ -140,7 +139,8 @@ endprimitive
 // Example 9; A T flip-flop
 primitive TFF (q, clk, clr);
           input clk, clr;
-          output reg q;
+          output q;
+          reg q;
           
           initial
             q = 0;   //This is optional
@@ -155,9 +155,8 @@ primitive TFF (q, clk, clr);
           endtable
 endprimitive
 
-//Example 10: onstructing a 6-bit ripple counter using T Flip-Flops
-
-module ripple_counter (count, clk, clr):
+//Example 10: onstructing a 6-bit ripple counter using T Flip-Flop
+module ripple_counter (count, clk, clr);
        input clk, clr;
        output [5:0] count;
        
@@ -173,7 +172,8 @@ endmodule
 // Example 11: A negative edge sensitive of a JK Flip-Flop
 primitive JKFF (q, j, k, clk, clr);
           input j, k, clk, clr;
-          output reg q;
+          output q;
+          reg q;
           
           initial
             q = 0;   //This is optional
@@ -194,7 +194,8 @@ endprimitive
 // Example 12: A positive edge sensitive of a SR Flip-Flop
 primitive SRFF (q, s, r, clk, clr);
           input s, r, clk, clr;
-          output reg q;
+          output q;
+          reg q;
           
           initial
             q = 0;   //This is optional

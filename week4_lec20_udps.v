@@ -1,3 +1,9 @@
+Concepts Covered:
+•	Explains how user defined primitives (UDPs) can be used to specify both combinational and sequential functions. 
+•	Discusses the rules and guidelines to be followed for using UDPs. 
+•	Illustrate how to model single-output combinational functions using UDPs. 
+•	Illustrate how to model single-state sequential machines like latches and flip-flops using UDPs. 
+
 // Example 1: Full adder sum generation using UDP
 primitive udp_sum (sum, a, b, c);
           input a, b, c;

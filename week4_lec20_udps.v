@@ -93,6 +93,24 @@ primitive udp_or4 (f, a, b, c, d);
           endtable
 endprimitive
 
+// Example 7:  4-to-1 multiplexer
+// using dont care ("?")
+primitive udp_mux41 (f, s0, s1, i0, i1, i2, i3);
+          input s0, s1, i0, i1, i2, i3, i4;
+          output f;
+          
+          table
+          // s0 s1 i0 i1 i2 i3 : f
+             0  0  0  ?  ?  ?  : 0;
+             0  0  1  ?  ?  ?  : 1;
+             0  1  ?  0  ?  ?  : 0;
+             0  1  ?  1  ?  ?  : 1;
+             1  0  ?  ?  0  ?  : 0;
+             1  0  ?  ?  1  ?  : 1;
+             1  1  ?  ?  ?  0  : 0;
+             1  1  ?  ?  ?  1  : 1;
+          endtable
+endprimitive
 
              
              

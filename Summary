@@ -3,3 +3,5 @@ Data Flow assignments using assign, LHS is always net
 Procedural blocks using initial and always, LHS is always reg
 Procedural assignments: Blocking and Non-Blocking
 Recommendations: Blocking for combinational circuits and Non-Blocking assignments for sequential circuits
+Generate Blocks
+User Defined Primitives

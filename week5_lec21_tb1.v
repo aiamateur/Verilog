@@ -63,5 +63,12 @@ module testbench;
       end
 endmodule
 
+//Results
+VCD info: dumpfile comp.vcd opened for output.
+                   0 x=01, y=00, z=0
+                  10 x=10, y=10, z=1
+                  20 x=01, y=11, z=0
+
+
 
     

@@ -26,4 +26,36 @@ module testbench;
       #5 $finish;
     end
 endmodule
+
+//Example 2
+//A complete example :: 2 bit equality checker
+module comparator(x, y, z);
+  input [1:0] x, y;
+  output z;
+  
+  assign z = (~x[0] & ~y[0] & ~x[1] & ~y[1]) | (x[0] & y[0] & ~x[1] & ~y[1]) | (~x[0] & ~y[0] & x[1] & y[1]) | (x[0] & y[0] & x[1] & y[1]);
+endmodule
+
+`timescale 1ns/100ps
+module testbench;
+  reg [1:0] x, y;
+  wire z;
+  
+  comparator C2 (.x(x), .y(y), .z(z));
+  
+  initial 
+  begin
+    $dumpfile("comp.vcd");
+    $dumpvars(0, testbench);
+    x = 2'b01; y = 2'b00; 
+    #10 x = 2'b10; y = 2'b10;   
+    #10 x = 2'b01; y = 2'b11; 
+  end
+    initial
+      begin 
+        $monitor($time, " x=%b, y=%b, z=%d", x, y, z);
+      end
+endmodule
+
+
     

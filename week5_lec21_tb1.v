@@ -1,3 +1,9 @@
+Concepts Covered :
+
+•	Explains the basic function of a test bench in simulation. 
+•	Explains the various simulator directives that are used for writing test benches. 
+•	Illustrate the writing of test bench with a complete example. 
+
 //A simple Example
 //Github example 1
 module example(A, B, C, D, E, F, Y);

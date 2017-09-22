@@ -17,7 +17,7 @@ module full_adder(s, co, a, b, c);
   assign co = (a & b) | (b & c) | (a & c);
 endmodule
 
-module testbench;
+module testbench1;
   reg a, b, c;
   wire sum, cout;
   

@@ -41,6 +41,32 @@ endmodule
                   15 a=1, b=1, c=1, sum=1, cout=1 
                   20 a=0, b=0, c=0, sum=0, cout=0 
 
+module testbench2;
+  reg a, b, c;
+  wire sum, cout;
+  
+  full_adder FA(.s(sum), .co(cout), .a(a), .b(b), .c(c));
+  
+  initial
+    begin
+      a=0; b=0; c=1; #5;
+      $display($time, " a=%b, b=%b, c=%b, sum=%b, cout=%b ", a, b, c, sum, cout );
+      b=1; #5;
+      $display($time, " a=%b, b=%b, c=%b, sum=%b, cout=%b ", a, b, c, sum, cout );
+      a=1; #5;
+      $display($time, " a=%b, b=%b, c=%b, sum=%b, cout=%b ", a, b, c, sum, cout );
+      a=0; b=0; c=0; #5;
+      $display($time, " a=%b, b=%b, c=%b, sum=%b, cout=%b ", a, b, c, sum, cout );
+      #5 $finish;
+    end
+endmodule
+
+//Results
+                   5 a=0, b=0, c=1, sum=1, cout=0 
+                  10 a=0, b=1, c=1, sum=0, cout=1 
+                  15 a=1, b=1, c=1, sum=1, cout=1 
+                  20 a=0, b=0, c=0, sum=0, cout=0 
+
   
   
   

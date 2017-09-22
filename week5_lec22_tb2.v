@@ -195,6 +195,156 @@ endmodule
 
 //Results
 VCD info: dumpfile shifter.vcd opened for output.
+  
+  //Example 3: 7-bit binary counter
+module counter(clear, clock, count);
+  parameter N = 7;
+  input clear, clock;
+  output reg [0:N] count;
+  
+  always @(negedge clock)
+    if(clear)
+      count <= 0;
+    else
+      count = count+1;
+endmodule
+
+module test_counter;
+  reg clk, clr;
+  wire [7:0] out;
+  
+  counter CNT(.clock(clk), .clear(clr), .count(out));
+  
+  initial clk = 1'b0;
+  
+  always #5 clk = ~clk;
+  
+  initial
+    begin
+      clr = 1'b1;
+      #15 clr = 1'b0;
+      #200 clr = 1'b1;
+      #10 $finish;
+    end
+    
+  initial
+    begin
+      $dumpfile("counter.vcd");
+      $dumpvars(0, test_counter);
+      $monitor($time, " Count = %d ", out);
+    end
+    
+endmodule
+
+//Results
+VCD info: dumpfile counter.vcd opened for output.
+                   0 Count =   0 
+                  20 Count =   1 
+                  30 Count =   2 
+                  40 Count =   3 
+                  50 Count =   4 
+                  60 Count =   5 
+                  70 Count =   6 
+                  80 Count =   7 
+                  90 Count =   8 
+                 100 Count =   9 
+                 110 Count =  10 
+                 120 Count =  11 
+                 130 Count =  12 
+                 140 Count =  13 
+                 150 Count =  14 
+                 160 Count =  15 
+                 170 Count =  16 
+                 180 Count =  17 
+                 190 Count =  18 
+                 200 Count =  19 
+                 210 Count =  20 
+                 220 Count =   0 
+
+//Example 4: Automatic Verification of output
+module fulladder(s, co, a, b, c);
+  input a, b, c;
+  output s, co;
+  
+  assign s = a ^ b ^ c;
+  assign co = (a & b) | (b & c) | (a & c);
+endmodule
+
+module fulladder_test;
+  reg a, b, c;
+  wire s, cout;
+  integer correct;
+  
+  fulladder FA(.s(s), .co(cout), .a(a), .b(b), .c(c));
+  
+  initial 
+    begin
+      correct = 1;
+      #5 a = 1; b = 1; c = 0; #5;
+      if ((s != 0) || (cout != 1))
+        correct = 0;
+        
+      #5 a = 1; b = 1; c = 1; #5;
+      if ((s != 1) || (cout != 1))
+        correct = 0;
+        
+      #5 a = 0; b = 1; c = 0; #5;
+      if ((s != 1) || (cout != 0))
+        correct = 0;
+        
+      #5 $display("%d", correct);
+    end
+endmodule
+
+//Results
+1 //Shall display 1 if outputs are correct; and display 0 otherwise
+
+//Example 5: Generating random test vectors
+module adder(out, cout, a, b);
+  input [7:0] a, b;
+  output [7:0] out;
+  output cout;
+  
+  assign #5 {cout, out} = a+b;
+endmodule
+
+module test_adder;
+  reg [7:0] a, b;
+  wire [7:0] sum;
+  wire cout;
+  
+  integer myseed;
+  
+  adder ADD(.out(sum), .cout(cout), .a(a), .b(b));
+  
+  initial
+    myseed = 15;
+    
+  initial
+    begin
+      repeat (5)
+        begin
+          a = $random(myseed);
+          b = $random(myseed); #10;
+          $display(" T = %3d, a = %h, b = %h, sum = %h", $time, a, b, sum);
+        end
+    end
+endmodule
+
+//Results
+ T =  10, a = 00, b = 52, sum = 52
+ T =  20, a = ca, b = 08, sum = d2
+ T =  30, a = 0c, b = 6a, sum = 76
+ T =  40, a = b1, b = 71, sum = 22
+ T =  50, a = 23, b = df, sum = 02
+    
+  
+  
+
+  
+
+
+
 
   
   

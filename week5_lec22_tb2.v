@@ -95,6 +95,38 @@ endmodule
                   35 a=1, b=1, c=0, sum=0, cout=1 
                   40 a=1, b=1, c=1, sum=1, cout=1 
 
+module testbench4;
+  reg a, b, c;
+  wire sum, cout;
+  integer i;
+  
+  full_adder FA(.s(sum), .co(cout), .a(a), .b(b), .c(c));
+  
+  initial
+    begin
+      $dumpfile("fulladder.vcd");
+      $dumpvars(0, testbench4);
+      for (i = 0; i < 8; i++)
+        begin
+          {a, b, c} = i; #5;
+          $display($time, " a=%b, b=%b, c=%b, sum=%b, cout=%b ", a, b, c, sum, cout );
+        end
+      #5 $finish;
+    end
+endmodule
+
+//Results
+VCD info: dumpfile fulladder.vcd opened for output.
+                   5 a=0, b=0, c=0, sum=0, cout=0 
+                  10 a=0, b=0, c=1, sum=1, cout=0 
+                  15 a=0, b=1, c=0, sum=1, cout=0 
+                  20 a=0, b=1, c=1, sum=0, cout=1 
+                  25 a=1, b=0, c=0, sum=1, cout=0 
+                  30 a=1, b=0, c=1, sum=0, cout=1 
+                  35 a=1, b=1, c=0, sum=0, cout=1 
+                  40 a=1, b=1, c=1, sum=1, cout=1 
+
+
   
   
   

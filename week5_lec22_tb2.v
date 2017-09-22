@@ -125,6 +125,79 @@ VCD info: dumpfile fulladder.vcd opened for output.
                   30 a=1, b=0, c=1, sum=0, cout=1 
                   35 a=1, b=1, c=0, sum=0, cout=1 
                   40 a=1, b=1, c=1, sum=1, cout=1 
+  
+//Example 2
+//4-bit shift register
+
+module shiftreg_4bit(clock, clear, A, E);
+  input clock, clear, A;
+  output reg E;
+  
+  reg B, C, D;
+  
+  always @(posedge clock or negedge clear)
+    begin
+      if(!clear) 
+        begin
+          B <= 0;
+          C <= 0;
+          D <= 0;
+          E <= 0;
+        end
+      else
+        begin
+          E <= D;
+          D <= C;
+          C <= B;
+          B <= A;
+        end
+    end
+endmodule
+
+module shift_test;
+  reg clk, clr, in;
+  wire out;
+  integer i;
+  
+  shiftreg_4bit SR(.clock(clk), .clear(clr), .A(in), .E(out));
+  
+  initial
+    begin
+      clk = 1'b0;
+      #2 clr = 1'b0;
+      #5 clr = 1'b1;
+    end
+    
+  always 
+    begin
+      #5 clk = ~clk;
+    end
+  
+  initial 
+    begin
+      #2;
+      repeat (2);
+        begin
+          #10 in = 0;
+          #10 in = 0;
+          #10 in = 1;
+          #10 in = 1;
+        end
+    end
+    
+  initial 
+    begin
+      $dumpfile("shifter.vcd");
+      $dumpvars(0, shift_test);
+      #200 $finish;
+    end
+endmodule
+
+//Results
+VCD info: dumpfile shifter.vcd opened for output.
+
+  
+  
 
 
   

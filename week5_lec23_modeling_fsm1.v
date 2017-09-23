@@ -66,7 +66,7 @@ VCD info: dumpfile cyclic.vcd opened for output.
                   95 RGB : 100
 
 
-//Example 2: cyclic_lamp version 2
+//Example 1: cyclic_lamp version 2
 module cyclic_lamp2(clock, light);
   input clock;
   output reg [0:2] light; 

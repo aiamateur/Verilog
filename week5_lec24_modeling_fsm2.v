@@ -92,7 +92,7 @@ module seq_detector(x, clk, reset, z);
   input x, clk, reset;
   output reg z;
 
-  parameter S0 = 0; S1 = 1; S2 = 2; S3 = 3;
+  parameter S0 = 0, S1 = 1, S2 = 2, S3 = 3;
   reg [0:1] PS, NS;
   
   always @(posedge clk or posedge reset)

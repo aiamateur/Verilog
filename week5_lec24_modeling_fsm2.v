@@ -1,3 +1,9 @@
+Concepts Covered :
+
+•	Illustrate the Verilog modeling of a serial parity detector (Moore machine), along with the test bench. 
+•	Illustrate the Verilog modeling of a sequence detector (Mealy machine), along with the test bench. 
+•	Explains the modeling of a few other Mealy machine examples. 
+  
 //Example 2: version 1 parity_gen, test_parity
 module parity_gen1(x, clk, z);
   input x, clk;

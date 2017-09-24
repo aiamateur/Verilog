@@ -1,3 +1,10 @@
+Concepts Covered :
+
+•	Explains the basic concept of a finite state machine. 
+•	Distinguishes between Moore and Mealy type finite state machines. 
+•	Illustrate the Verilog modeling of a simple Moore finite state machine, along with the test bench. 
+•	Explains the recommended modeling style to be used to avoid unwanted storage elements. 
+
 //Example 1: cyclic_lamp version 1
 module cyclic_lamp1(clock, light);
   input clock;

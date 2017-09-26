@@ -159,6 +159,23 @@ module MUL_test;
     
 endmodule
 
+//Actual Results
+VCD info: dumpfile mul.vcd opened for output.
+                   0     x x 
+                  35     0 x 
+                  45     x x 
+  
+ //Expected Results
+  0 x x
+6 x 0
+35 0 0
+45 17 0
+55 34 0
+65 51 0
+75 68 0
+85 85 0
+88 85 1
+
 
 
   

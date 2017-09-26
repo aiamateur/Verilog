@@ -1,3 +1,10 @@
+Concepts Covered :
+•	Explains how a complex design can be partitioned into data path and control path.
+•	Illustrate the process using an example of unsigned multiplication using repeated addition.
+•	Show the data path diagram, controller FSM, and Verilog coding for the same.
+
+//Example 1: Multiplier by repeated addition
+//The Data Path
 module MUL_datapath(eqz, LdA, LdB, LdP, clrP, decB, data_in, clk);
   input LdA, LdB, LdP, clrP, decB, clk;
   input [15:0] data_in;
@@ -56,6 +63,7 @@ module CNTR(dout, din, ld, dec, clk);
     else if(dec) dout <= dout - 1;
 endmodule
 
+//The Control Path
 module controller(LdA, LdB, LdP, clrP, decB, done, clk, eqz, start);
   input clk, eqz, start;
   output reg LdA, LdB, LdP, clrP, decB, done;
@@ -115,6 +123,48 @@ module controller(LdA, LdB, LdP, clrP, decB, done, clk, eqz, start);
       endcase
     end
 endmodule
+
+//The Test Bench
+module MUL_test;
+  reg [15:0] data_in;
+  reg clk, start;
+  wire done;
+  
+  MUL_datapath DP (eqz, LdA, LdB, LdP, clrP, decB, data_in, clk);
+  controller CON (LdA, LdB, LdP, clrP, decB, done, clk, eqz, start);
+  
+  initial
+    begin
+      clk = 1'b0;
+      #3 start = 1'b1;
+      #500 $finish;
+    end
+    
+  always
+    #5 clk = ~clk;
+    
+  initial
+    begin
+      #17 data_in = 17;
+      #10 data_in = 5;
+    end
+    
+
+  initial
+    begin
+      $monitor($time, " %d %b ", DP.Y, done);
+      $dumpfile("mul.vcd");
+      $dumpvars(0, MUL_test);
+    end
+    
+endmodule
+
+
+
+  
+  
+  
+  
 
 
   

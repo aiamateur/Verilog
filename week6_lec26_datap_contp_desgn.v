@@ -235,12 +235,14 @@ module controller1(ldA, ldB, sel1, sel2, sel_in, done, clk, lt, gt, eq, start);
       case(state)
         S0: begin
               sel_in = 1;
+              next_state = S1; //I added this as I believe this is correct
               ldA  = 1;
               ldB  = 0;
               done = 0;
             end
         S1: begin
               sel_in = 1;
+              next_state = S2; //I added this as I believe this is correct
               ldA  = 0;
               ldB  = 1;
             end

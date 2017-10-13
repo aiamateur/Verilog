@@ -176,6 +176,24 @@ module regfile_test;
       $finish;
     end
 endmodule
+
+//Results
+reg[ 0] =          0, reg[ 1] =         10
+reg[ 2] =         20, reg[ 3] =         30
+reg[ 4] =         40, reg[ 5] =         50
+reg[ 6] =         60, reg[ 7] =         70
+reg[ 8] =         80, reg[ 9] =         90
+reg[10] =        100, reg[11] =        110
+reg[12] =        120, reg[13] =        130
+reg[14] =        140, reg[15] =        150
+reg[16] =        160, reg[17] =        170
+reg[18] =        180, reg[19] =        190
+reg[20] =        200, reg[21] =        210
+reg[22] =        220, reg[23] =        230
+reg[24] =        240, reg[25] =        250
+reg[26] =        260, reg[27] =        270
+reg[28] =        280, reg[29] =        290
+reg[30] =        300, reg[31] =        310
   
   
   

@@ -105,3 +105,25 @@ module RAM_test;
   initial
     myseed = 35;
 endmodule
+
+//Results
+Address :     0, Data :    0
+Address :   960, Data :  128
+Address :   482, Data :  196
+Address :   693, Data :  106
+Address :   246, Data :  236
+Address :   228, Data :  200
+Address :   148, Data :   40
+Address :   767, Data :  254
+Address :   355, Data :  198
+Address :   259, Data :    6
+Address :    21, Data :   42
+Address :   872, Data :  208
+Address :   758, Data :  236
+Address :   193, Data :  130
+Address :   909, Data :   26
+Address :   632, Data :  240
+Address :   719, Data :  158
+Address :   214, Data :  172
+Address :    67, Data :  134
+Address :   908, Data :   24

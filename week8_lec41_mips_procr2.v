@@ -183,6 +183,14 @@ module test1_mips32;
   
 endmodule
 
+//Results
+VCD info: dumpfile mips.vcd opened for output.
+R0 -  0
+R1 - 10
+R2 - 20
+R3 - 25
+R4 - 30
+R5 - 55
 
 module test2_mips32;
   reg clk1, clk2;
@@ -235,6 +243,10 @@ module test2_mips32;
 
   
 endmodule
+//Results
+VCD info: dumpfile mips.vcd opened for output.
+Mem[120]:   85 
+ Mem[121]:  130
 
 
 
@@ -291,3 +303,18 @@ module test3_mips32;
     end
   
 endmodule
+
+//Results
+VCD info: dumpfile mips.vcd opened for output.
+R2:    2
+R2:    1
+R2:    7
+R2:   42
+R2:  210
+R2:  840
+R2: 2520
+R2: 5040
+R2: 5040
+Mem[200]:  7 
+ Mem[198]:   5040
+
